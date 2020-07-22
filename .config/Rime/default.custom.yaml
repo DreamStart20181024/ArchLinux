@@ -1,0 +1,76 @@
+customization:
+  distribution_code_name: Weasel
+  distribution_version: 0.14.3
+  generator: "Rime::SwitcherSettings"
+  modified_time: "Thu Jul  9 15:26:25 2020"
+  rime_version: 1.5.3
+patch:
+  # 设置候选字为9个
+  "menu/page_size": 9
+  # 配置中文输入发下的一些特殊字符
+  punctuator :
+      import_preset : default 
+      full_shape :
+        " ": {commit: " "}
+        "!": {commit: "！"}
+        "\"": {pair: ["“", "”"]}
+        "#": "＃"
+        "$": "￥"
+        "%": "％"
+        "&": "＆"
+        "'": {pair: ["‘", "’"]}
+        "(": "（"
+        ")": "）"
+        "*": "＊"
+        ",": {commit: "，"}
+        .: {commit: "。"}
+        "/": "、"
+        ":": {commit: "："}
+        ";": {commit: "；"}
+        "<": "《"
+        ">": "》"
+        "?": {commit: "？"}
+        "@": "＠"
+        "[":  "【"
+        "]": "】"
+        "^": {commit: "……"}
+        _: "——"
+        "`": "｀"
+        "{": "｛"
+        "|": "｜"
+        "}": "｝"
+        "~": "～"
+      half_shape :
+        " ": {commit: " "}
+        "!": {commit: "！"}
+        "\"": {pair: ["“", "”"]}
+        "#": "＃"
+        "$": "￥"
+        "%": "％"
+        "&": "＆"
+        "'": {pair: ["‘", "’"]}
+        "(": "（"
+        ")": "）"
+        "*": "＊"
+        ",": {commit: "，"}
+        .: {commit: "。"}
+        "/": "、"
+        ":": {commit: "："}
+        ";": {commit: "；"}
+        "<": "《"
+        ">": "》"
+        "?": {commit: "？"}
+        "@": "＠"
+        "[":  "【"
+        "]": "】"
+        "^": {commit: "……"}
+        _: "——"
+        "`": "｀"
+        "{": "｛"
+        "|": "｜"
+        "}": "｝"
+        "~": "～"
+  schema_list:
+    - {schema: luna_pinyin_simp}
+    - {schema: bopomofo}
+    - {schema: terra_pinyin}
