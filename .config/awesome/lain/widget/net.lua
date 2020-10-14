@@ -9,7 +9,7 @@
 local helpers = require("lain.helpers")
 local naughty = require("naughty")
 local wibox   = require("wibox")
-local string  = { format = string.format, match = string.match }
+local string  = string
 
 -- Network infos
 -- lain.widget.net
@@ -29,13 +29,14 @@ local function factory(args)
     net.iface = (args.iface and (type(args.iface) == "string" and {args.iface}) or
                 (type(args.iface) == "table" and args.iface)) or {}
 
-    function net.get_device()
+    function net.get_devices()
+        net.iface = {} -- reset at every call
         helpers.line_callback("ip link", function(line)
             net.iface[#net.iface + 1] = not string.match(line, "LOOPBACK") and string.match(line, "(%w+): <") or nil
         end)
     end
 
-    if #net.iface == 0 then net.get_device() end
+    if #net.iface == 0 then net.get_devices() end
 
     function net.update()
         -- These are the totals over all specified interfaces

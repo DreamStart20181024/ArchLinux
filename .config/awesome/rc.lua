@@ -5,11 +5,10 @@
 --]]
 
 -- {{{ Required libraries
---  导入必须的库
---   定义多个局部变量，并同时赋值 = 号后面为赋值
+-- 导入必须的库
+-- 定义多个局部变量，并同时赋值 = 号后面为赋值
 local awesome, client, mouse, screen, tag = awesome, client, mouse, screen, tag;
 local ipairs, string, os, table, tostring, tonumber, type = ipairs, string, os, table, tostring, tonumber, type;
-
 -- 判断是否安装了 LuaRocks 的软件仓库
 pcall(require, "luarocks.loader");
 -- gears ：实用程序，例如颜色解析和对象
@@ -52,6 +51,7 @@ end
 -- }}}
 
 -- {{{ Autostart windowless processes
+-- 开机自启的函数
 local function run_once(cmd_arr)
     for _, cmd in ipairs(cmd_arr) do
         findme = cmd
@@ -64,31 +64,27 @@ local function run_once(cmd_arr)
 end
 
 -- 配置开机启动软件
-run_once({"xrandr --output eDP --auto --scale 1x1 --output DisplayPort-1 --auto --scale 1.5x1.5 --right-of eDP"});
+--run_once({"xrandr --output eDP --auto --scale 1x1 --output DisplayPort-1 --auto --scale 1.5x1.5 --right-of eDP"});
 run_once({"nm-applet"});
-run_once({"fcitx5"});
+run_once({"fcitx"});
 run_once({"picom"});
---[[
-run_once({ 
-		-- unclutter 一款速记软件
-	"unclutter -root",
-	-- 启动网络托盘
-	"nm-applet",
-	"fcitx5 &",
-	"xrandr --output eDP --auto --scale 1x1 --output DisplayPort-1 --auto --scale 1.5x1.5 --right-of eDP",
-	"picom &"
-}) -- entries must be comma-separated
---]]
+run_once({"pasystray"});
 -- }}}
 
--- {{{ Variable definitions
---  定义应用程序名称，作为启动的变量
+-- {{{ Variable definitions 定义应用程序名称，作为启动的变量
+-- 主题
 local chosen_theme = "powerarrow-dark"
+-- WIN 按键
 local modkey       = "Mod4"
+-- ALT 按键
 local altkey       = "Mod1"
+-- 终端
 local terminal     = "alacritty"
+-- 命令行文本编辑器
 local editor       = "nvim"
+-- GUI 文本编辑器
 local gui_editor   = "nvim-qt"
+-- 浏览器
 local browser      = "google-chrome-stable"
 -- beaver 文本编辑器
 local guieditor    = "beaver"
@@ -96,10 +92,9 @@ local guieditor    = "beaver"
 local windows_Switcher = "rofi"
 -- 文件管理器
 local filesManager = "pcmanfm"
-
+-- 终端
 awful.util.terminal = terminal
---awful.util.tagnames = { "", "", "", "", "", ""}
-awful.util.tagnames = { "", "2", "3", "4", "5", "6", "7", "8", "9"}
+awful.util.tagnames = { "1", "2", "3", "4", "5", "6", "7"};
 -- 所有可以使用的窗体
 awful.layout.layouts = {
     awful.layout.suit.tile,
@@ -140,7 +135,7 @@ awful.util.taglist_buttons = my_table.join(
                                           end),
                     awful.button({ }, 4, function(t) awful.tag.viewnext(t.screen) end),
                     awful.button({ }, 5, function(t) awful.tag.viewprev(t.screen) end)
-                )
+                );
 awful.util.tasklist_buttons = my_table.join(
                      awful.button({ }, 1, function (c)
                                               if c == client.focus then
@@ -240,7 +235,7 @@ root.buttons(my_table.join(
 ))
 -- }}}
 
--- {{{ Key bindings
+-- {{{ Key bindings  配置快捷键
 globalkeys = my_table.join(
     -- Take a screenshot
     awful.key({                  }, "Print", function() awful.spawn.with_shell("flameshot gui -p ~/Hdd/media/picture/screenshots/") end,
