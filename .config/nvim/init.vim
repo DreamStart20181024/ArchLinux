@@ -4,12 +4,10 @@
 "| |  | | | |   | |\  | \ V /  | || |  | |  _ <| |___
 "|_|  |_| |_|   |_| \_|  \_/  |___|_|  |_|_| \_\\____|
 
-" Author: @ Liu Peng
-"
-"
-"
+" Author: @LiuPeng
 
-"
+
+
 " 判断操作系统
 "
 let g:iswindows = 0
@@ -39,36 +37,13 @@ endif
 
 " #######################################   基本设置    ######################################
 
-set history=1000                                                    " 设置历史操作记录为1000条
-set nocompatible                                                    " 不启用vi的键盘模式,而是vim自己的,关闭兼容模式
-syntax on                                                           " 语法高亮支持
+set nocompatible                                                    " 不启用vi的键盘模式,关闭兼容模式(必须设置在开头)
+set history=2000                                                    " 设置历史操作记录为2000条
+syntax enable                                                       " 语法高亮支持
 filetype on                                                         " 关闭文件类型自动检测功能,这个功能被filetype plugin indent on代替
-filetype plugin indent on                                           " 载入文件类型插件,代替filetype off 
-" ------ Vim美化 ------ 
-packadd! onedark                                                    " 
-colorscheme onedark													" 设置onedark主题
-" 支持真色彩；终端下
-set termguicolors
-" 根据时间动态的切换主题背景颜色
-" 白天激活浅色版本（此处定义为7 AM-7PM），晚上激活暗色版本。
-"if strftime('%H') >= 7 && strftime('%H') < 19
-"  set background=light                                             " 设置vim背景为浅色
-"  let g:airline_theme='cosmic_latte_light'							" 航空公司的配置
-"  "let g:lightline = { 'colorscheme': 'cosmic_latte_light' }		" 灯线的配置 
-"else
-"  set background=dark                                              " 设置vim背景为深色
-"  let g:airline_theme='cosmic_latte_dark'							" 航空公司的配置
-"  "let g:lightline = { 'colorscheme': 'cosmic_latte_dark' }		  	" 灯线的配置
-"endif
-"colorscheme cosmic_latte
+filetype plugin indent on                                           " 载入文件类型插件,代替filetype off
 
 " 设置文件编码和文件格式
-"set fenc=utf-8
-"set encoding=utf-8
-"set fileencodings=utf-8,gbk,cp936,latin-1
-"set fileformat=unix
-"set fileformats=unix,mac,dos
-
 set fileencodings=utf-8,gb2312,gbk,gb18030,big5,ucs-bom,cp936,latin-1
 set fenc=utf-8
 set encoding=utf-8
@@ -76,29 +51,77 @@ set termencoding=utf-8
 set fileformat=unix
 set fileformats=unix,mac,dos
 
-set backspace=2                                                     " 设置退格键可用
-set autoindent                                                      " 自动对齐
-set ai!                                                             " 设置自动缩进
-set smartindent                                                     " 智能自动缩进
-set relativenumber                                                  " 开启相对行号
-set nu!                                                             " 显示行号
-set ruler                                                           " 右下角显示光标位置的状态行
-set incsearch                                                       " 开启实时搜索功能
-set hlsearch                                                        " 开启高亮显示结果
-set nowrapscan                                                      " 搜索到文件两端时不重新搜索
-set hidden                                                          " 允许在有未保存的修改时切换缓冲区
-set autochdir                                                       " 设定文件浏览器目录为当前目录
-set foldmethod=indent                                               " 选择代码折叠类型
-set foldlevel=100                                                   " 禁止自动折叠
-set laststatus=2                                                    " 开启状态栏信息
-set cmdheight=2                                                     " 命令行的高度，默认为1，这里设为2
-set autoread                                                        " 当文件在外部被修改时自动更新该文件
-set virtualedit=block												" 允许可视列块模式的虚拟编辑
-set nrformats=                                                      " 关闭八进制
-set list                                                            " 显示特殊字符，其中Tab使用高亮~代替，尾部空白使用高亮点号代替
+" 设置字体
+"set guifont=JetBrains\ Mono:h11:cANSI
+" 设置退格键可用
+set backspace=2
+" 自动对齐
+set autoindent
+" 设置自动缩进
+set ai!
+" 智能自动缩进
+set smartindent
+" 开启相对行号
+set relativenumber
+" 显示行号
+set number
+" 右下角显示光标位置的状态行
+set ruler
+" 开启实时搜索功能
+set incsearch
+" 开启高亮显示结果
+set hlsearch
+" 搜索到文件两端时不重新搜索
+set nowrapscan
+" 允许在有未保存的修改时切换缓冲区
+set hidden
+" 设定文件浏览器目录为当前目录
+set autochdir
+" 选择代码折叠类型
+set foldmethod=indent
+" 禁止自动折叠
+set foldlevel=100
+" 开启状态栏信息
+set laststatus=2
+" 命令行的高度，默认为1，这里设为2
+set cmdheight=2
+" 当文件在外部被修改时自动更新该文件
+set autoread
+" 允许可视列块模式的虚拟编辑
+set virtualedit=block
+" 关闭八进制
+set nrformats=
+" 显示特殊字符，其中Tab使用高亮~代替，尾部空白使用高亮点号代替
+set list
 set listchars=tab:\|\ ,trail:▫
-set expandtab                                                       " 将 Tab 自动转化成空格 [需要输入真正的 Tab 符时，使用 Ctrl+V + Tab]
-set showmatch                                                       " 显示括号配对情况
+" 将Tab自动转化成空格[需要输入真正的Tab符时，使用 Ctrl+V + Tab]
+set expandtab
+" 显示括号配对情况
+set showmatch
+
+" ------ Vim美化 ------
+" 支持真色彩；终端下
+set termguicolors
+" 设置vim背景为浅色
+set background=dark
+"
+packadd! dracula
+" 设置gruvbox主题
+colorscheme dracula
+" --------------------------------
+" 根据时间动态的切换主题背景颜色
+" 白天激活浅色版本（此处定义为7 AM-7PM），晚上激活暗色版本。
+" --------------------------------
+"if strftime('%H') >= 7 && strftime('%H') < 19
+"  set background=light                                         " 设置vim背景为浅色
+"  let g:airline_theme='cosmic_latte_light'                     " 航空公司的配置
+"  "let g:lightline = { 'colorscheme': 'cosmic_latte_light' }   " 灯线的配置 
+"else
+"  set background=dark                                          " 设置vim背景为深色
+"  let g:airline_theme='cosmic_latte_dark'                      " 航空公司的配置
+"  "let g:lightline = { 'colorscheme': 'cosmic_latte_dark' }    " 灯线的配置
+"endif
+"colorscheme cosmic_latte
 
 " -------- 窗口及布局配置 ---------
 au GUIEnter * simalt ~x                                             " 启动时自动最大化窗口
@@ -173,8 +196,108 @@ let g:python3_host_prog='C:/Python38/python.exe'
 let g:python_host_prog='C:/Python26/python.exe'
 
 "##################################  按键设置   ##################################
-" 重新映射 <LEADER> 案件： 默认为： \
+" 重新映射 <LEADER> 按键
 let mapleader = ","
+let maplocalleader = "\\"
+
+" 将 r 与 R 替换成 虚拟替换模式
+noremap R gR
+
+" 退出insert模式
+inoremap jk <ESC>
+
+" Copy to system clipboard
+noremap y "+y
+noremap p "+p
+
+" Copy to system clipboard
+vnoremap y "+y
+vnoremap p "+p
+
+" 全选 + 复制
+noremap <C-A> ggVGy
+
+" 全选 + 复制
+noremap! <C-A> <Esc>ggVGy
+
+" 复制一整行
+noremap Y yy
+
+" make Y to copy till the end of the line 
+" 使用Y复制一整行
+"nnoremap Y y$
+
+" 搜索时使光标始终在中间一行。
+noremap n nzz
+noremap N Nzz
+
+" 删除一整行
+noremap <LEADER>d dd
+inoremap <LEADER>d <ESC>ddi
+
+" 将当前光标下的单词大写
+inoremap <LEADER>U <ESC>viwUA
+noremap <LEADER>U viwUe
+noremap <LEADER>u viwue
+
+" 添加引号
+nnoremap <LEADER>" viw<esc>a"<esc>hbi"<esc>lel
+
+" 添加单引号
+nnoremap <LEADER>' viw<esc>a'<esc>hbi'<esc>lel
+
+" 添加括号
+nnoremap <LEADER>( viw<esc>a)<esc>hbi(<esc>lel
+nnoremap <LEADER>[ viw<esc>a]<esc>hbi[<esc>lel
+nnoremap <LEADER>{ viw<esc>a}<esc>hbi{<esc>lel
+
+" 添加注释
+autocmd FileType javascript nnoremap <buffer> <LEADER>c I// <ESC>
+autocmd FileType shell,python nnoremap <buffer> <LEADER>c I# <ESC>
+" Disable the default s key
+" 关闭s键的默认功能
+"noremap s <nop>
+
+" Save & quit
+noremap Q :q<CR>
+noremap S :w<CR>
+
+" noremap <C-q> :qa<CR>
+noremap <A-R> :source $MYVIMRC<CR>
+
+" Open the vimrc file anytime
+noremap <LEADER>rc :vsplit $MYVIMRC<CR>
+
+" 使用%% 快捷键，直接显示全路径
+cnoremap <expr> %% getcmdtype( ) == ':' ? expand('%:h').'/' : '%%'
+
+" 折叠行
+noremap <LEADER>- :lN<CR>
+noremap <LEADER>= :lne<CR>
+
+" 关闭高亮显示
+noremap <LEADER><CR> :nohlsearch<CR>
+
+" Adjacent duplicate words
+noremap <LEADER>dw /\(\<\w\+\>\)\_s*\1
+
+" 替换全局 TAB
+nnoremap <LEADER>tt :%s/    /\t/g<CR>
+vnoremap <LEADER>tt :s/    /\t/g<CR>
+
+" 替换Windows下的 ^M符号
+map <LEADER>dm :%s/ //g<CR>
+
+" 折叠
+noremap <silent> <LEADER>o za
+
+" 打开 lazygit
+"noremap <LEADER>g :Git 
+"noremap <c-g> :tabe<CR>:-tabmove<CR>:term lazygit<CR>
+
+" 格式化
+nnoremap \f :Autoformat<CR>
+
 " ----------------------  分屏 ------------------
 "  向左分屏，光标移动到新的窗口上
 map su :set splitright<CR>:vsplit<CR>
@@ -201,76 +324,6 @@ map <A-l> :vertical resize-5<CR>
 map tu :tabe<CR>
 map tn :-tabnext<CR>
 map tl :+tabnext<CR>
-
-
-" 将 r 与 R 替换成 虚拟替换模式
-"noremap r gr
-noremap R gR
-
-"  复制到系统粘贴板
-noremap y "+y
-noremap p "+p
-
-" 复制一整行
-noremap Y yy
-" 搜索时使光标始终在中间一行。
-noremap n nzz
-noremap N Nzz
-
-" Disable the default s key
-" 关闭s键的默认功能
-"noremap s <nop>
-
-
-" Save & quit
-map Q :q<CR>
-map S :w<CR>
-" noremap <C-q> :qa<CR>
-map <A-R> :source $MYVIMRC<CR>
-
-" Open the vimrc file anytime
-noremap <LEADER>rc :vsplit $MYVIMRC<CR>
-
-" 使用%% 快捷键，直接显示全路径
-cnoremap <expr> %% getcmdtype( ) == ':' ? expand('%:h').'/' : '%%'
-
-" make Y to copy till the end of the line 
-" 使用Y复制一整行
-"nnoremap Y y$
-
-" Copy to system clipboard
-"  复制到系统粘贴板
-vnoremap y "+y
-vnoremap p "+p
-" 折叠行
-noremap <LEADER>- :lN<CR>
-noremap <LEADER>= :lne<CR>
-
-" 关闭高亮显示
-noremap <LEADER><CR> :nohlsearch<CR>
-
-" Adjacent duplicate words
-noremap <LEADER>dw /\(\<\w\+\>\)\_s*\1
-
-" 替换全局 TAB
-nnoremap <LEADER>tt :%s/    /\t/g
-vnoremap <LEADER>tt :s/    /\t/g
-
-" 折叠
-noremap <silent> <LEADER>o za
-
-" 打开 lazygit
-"noremap <LEADER>g :Git 
-"noremap <c-g> :tabe<CR>:-tabmove<CR>:term lazygit<CR>
-
-" 格式化
-nnoremap \f :Autoformat<CR>
-map <C-A> ggVGy                              " 全选 + 复制
-map! <C-A> <Esc>ggVGy                        " 全选 + 复制
-
-"ctrl+f 复制到系统粘贴板
-"map  <C-F> "+y
-"map! <C-F> "+y
 
 " ##########################   自动编译文件    ######################################
 " F5 自动编译文件 Normal+Visual mode
@@ -326,7 +379,7 @@ map <C-n> :NERDTreeMirror<CR>
 map <C-n> :NERDTreeToggle<CR>
 " 当只剩 文件窗口管理器时 关闭 vim
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-" 更改默认的 箭头 
+" 更改默认的 箭头
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
 " 默认打开NERDTree
@@ -338,15 +391,58 @@ let NERDTreeQuitOnOpen=1                                        " 打开一个�
 " 打开文件默认开启文件树
 "autocmd VimEnter * NERDTree
 
-" ******************** 航空公司的配置不知道是否正确（没有报错，暂时就这样先配置） ********************************
+" ******************** 航空公司的配置 ********************************
 " 开启拓展
 let g:airline#extensions#tabline#enabled = 1
 " 为标签行配置单独的分隔符
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 " 启用默认样式
-let g:airline#extensions#tabline#formatter = 'default'
+let g:airline#extensions#tabline#formatter = 'unique_tail'
+" 配置样式
+let g:airline_theme='atomic'
 
+let g:airline#extensions#keymap#enabled = 1
+let g:airline#extensions#tabline#buffer_idx_mode = 1
+let g:airline#extensions#tabline#buffer_idx_format = {
+       \ '0': '0 ',
+       \ '1': '1 ',
+       \ '2': '2 ',
+       \ '3': '3 ',
+       \ '4': '4 ',
+       \ '5': '5 ',
+       \ '6': '6 ',
+       \ '7': '7 ',
+       \ '8': '8 ',
+       \ '9': '9 '
+       \}
+" 设置切换tab的快捷键 <,> + <i> 切换到第i个 tab
+nmap <leader>1 <Plug>AirlineSelectTab1
+nmap <leader>2 <Plug>AirlineSelectTab2
+nmap <leader>3 <Plug>AirlineSelectTab3
+nmap <leader>4 <Plug>AirlineSelectTab4
+nmap <leader>5 <Plug>AirlineSelectTab5
+nmap <leader>6 <Plug>AirlineSelectTab6
+nmap <leader>7 <Plug>AirlineSelectTab7
+nmap <leader>8 <Plug>AirlineSelectTab8
+nmap <leader>9 <Plug>AirlineSelectTab9
+" 设置切换tab的快捷键 <,> + <-> 切换到前一个 tab
+nmap <leader>- <Plug>AirlineSelectPrevTab
+" 设置切换tab的快捷键 <,> + <+> 切换到后一个 tab
+nmap <leader>+ <Plug>AirlineSelectNextTab
+" 设置切换tab的快捷键 <,> + <q> 退出当前的 tab
+nmap <leader>q :bp<cr>:bd #<cr>
+" 修改了一些个人不喜欢的字符
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+let g:airline_symbols.linenr = "CL" " current line
+let g:airline_symbols.whitespace = '|'
+let g:airline_symbols.maxlinenr = 'Ml' "maxline
+let g:airline_symbols.branch = 'BR'
+let g:airline_symbols.readonly = "RO"
+let g:airline_symbols.dirty = "DT"
+let g:airline_symbols.crypt = "CR"
 
 " ----------------     Markdown 文档插件的配置      ----------------------------
 " set to 1, nvim will open the preview window after entering the markdown buffer
@@ -625,12 +721,12 @@ call plug#begin()
 Plug 'mhinz/vim-startify'
 " 吸血鬼 主题
 Plug 'dracula/vim', { 'as': 'dracula' }
-" 护眼主题
-Plug 'nightsense/cosmic_latte'
-" 一个不知名的黑色主题
-Plug 'joshdick/onedark.vim'
 "gruvbox 主题
 "Plug 'morhetz/gruvbox'
+" 护眼主题
+"Plug 'nightsense/cosmic_latte'
+" 一个不知名的黑色主题
+"Plug 'joshdick/onedark.vim'
 "vim-airline 底部状态栏优化
 Plug 'bling/vim-airline'
 " 主题安装
